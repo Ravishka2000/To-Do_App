@@ -22,6 +22,8 @@
         </div>
     </nav>
 
+    {% if todos %}
+
     <div class="card border-dark mb-4 me-4 ms-4 mt-4">
       <div class="card-header">To Do's</div>
       <div class="card-body">
@@ -39,16 +41,24 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         {% for todo in todos %}
                             <tr>
                                 <td>{{ todo.task_title }}</td>
                                 <td>{{ todo.description }}</td>
                                 <td>{{ todo.date }}</td>
                                 <td>{{ todo.due_date }}</td>
-                                <td>{{ todo.status }}</td>
-                                <td>Actions</td>
-                            </tr>
+                                <td>
+                                    {% if todo.status == 1 %}
+                                        <i class="fa-regular fa-circle-check fa-lg"></i> Done
+                                    {% else %}
+                                        <i class="fa-regular fa-circle fa-lg"></i> Not Done Yet
+                                    {% endif %}
+                                </td>
+                                <td>
 
+                                </td>
+                            </tr>
                         {% endfor %}
 
                     </tbody>
@@ -57,6 +67,10 @@
         </p>
       </div>
     </div>
+
+    {% else %}
+        <h2 class="alert alert-primary ms-4 me-4 mt-4">No ToDo's</h2>
+    {% endif %}
 
 </body>
 </html>
