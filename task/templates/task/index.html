@@ -56,7 +56,16 @@
                                     {% endif %}
                                 </td>
                                 <td>
+                                    {% if todo.status == 0 %}
+                                        <a href="" class="btn btn-success">Complete</a>
 
+                                    {% else %}
+                                        <a href="" class="btn btn-warning">Not Complete</a>
+
+                                    {% endif %}
+
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
                                 </td>
                             </tr>
                         {% endfor %}
