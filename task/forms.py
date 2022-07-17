@@ -5,7 +5,7 @@ from .models import Todo
 class TodoForm(forms.ModelForm):
     class Meta:
         model = Todo
-        fields = ['task_title', 'description', 'due_date', 'status']
+        fields = ['task_title', 'description', 'due_date']
         labels = {
             'task_title': 'Title',
             'description': 'Description',
@@ -14,5 +14,5 @@ class TodoForm(forms.ModelForm):
         widgets = {
             'task_title': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
-            'due_date': forms.DateTimeInput(attrs={'class': 'form-control'}),
+            'due_date': forms.DateInput(attrs={'class': 'form-control'}),
         }

@@ -40,3 +40,27 @@ def changestatus(request, pk):
     todo.save()
 
     return redirect('index')
+
+
+def deletetask(request, pk):
+    todo = Todo.objects.get(id=pk)
+    todo.delete()
+
+    return redirect('index')
+
+
+def addtask(request):
+    if request.method == 'POST':
+        if request.POST.get('title'):
+            todo = Todo()
+            todo.task_title = request.POST.get('title')
+            todo.due_date = request.POST.get('dueDate')
+            todo.save()
+
+            return render(request, 'task/addtask.html', {
+                'success': True
+            })
+    else:
+        return render(request, 'task/addtask.html')
+
+
