@@ -29,3 +29,14 @@ def updatetask(request, pk):
     context = {'form': form}
     return render(request, 'task/updatetask.html', context)
 
+
+def changestatus(request, pk):
+    todo = Todo.objects.get(id=pk)
+
+    if todo.status:
+        todo.status = False
+    else:
+        todo.status = True
+    todo.save()
+
+    return redirect('index')

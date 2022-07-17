@@ -37,10 +37,10 @@
                                 </td>
                                 <td>
                                     {% if todo.status == 0 %}
-                                        <a href="" class="btn btn-success">Complete</a>
+                                        <a href="{% url 'changestatus' todo.id %}" class="btn btn-success">Complete</a>
 
                                     {% else %}
-                                        <a href="" class="btn btn-warning">Not Complete</a>
+                                        <a href="{% url 'changestatus' todo.id %}" class="btn btn-warning">Not Complete</a>
 
                                     {% endif %}
 
