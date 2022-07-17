@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Todo
 from .forms import TodoForm
@@ -16,19 +16,16 @@ def view_tasks(request, id):
     return HttpResponseRedirect(reverse('index'))
 
 
-def updatetask(request, id):
+def updatetask(request, pk):
+    todo = Todo.objects.get(id=pk)
+    form = TodoForm(instance=todo)
+
     if request.method == 'POST':
-        todo = Todo.objects.get(pk=id)
         form = TodoForm(request.POST, instance=todo)
         if form.is_valid():
             form.save()
-            return render(request, 'task/updatetask.html',{
-                'form': form,
-                'success': True,
-            })
-        else:
-            todo = Todo.objects.get(pk=id)
-            form = TodoForm(instance=todo)
-        return render(request, 'task/updatetask.html', {
-            'form': form,
-        })
+            return redirect('index')
+
+    context = {'form': form}
+    return render(request, 'task/updatetask.html', context)
+
