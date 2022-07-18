@@ -54,6 +54,7 @@ def addtask(request):
         if request.POST.get('title'):
             todo = Todo()
             todo.task_title = request.POST.get('title')
+            todo.description = request.POST.get('description')
             todo.due_date = request.POST.get('dueDate')
             todo.save()
 

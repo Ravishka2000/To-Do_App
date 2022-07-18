@@ -20,9 +20,11 @@
                         {% csrf_token %}
                         {{ form.as_p }}
                         Title<br>
-                        <input type="text" name="title"><br>
+                        <input type="text" name="title" class="form-control"><br>
+                        Description<br>
+                        <textarea type="text" name="description" class="form-control"></textarea><br>
                         Due Date<br>
-                        <input type="date" name="dueDate"><br><br>
+                        <input type="date" name="dueDate" class="form-control"><br><br>
                         <button type="submit" class="btn btn-primary">Add</button>
                         <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
                     </form>
